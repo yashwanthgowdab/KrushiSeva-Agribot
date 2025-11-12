@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krushiseva Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .contact-us {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-header h1 {
+            font-size: 2rem;
+            color: #2d7d34;
+            margin-bottom: 10px;
+        }
+
+        .contact-header p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .contact-form {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #e6ffe6; /* Light green */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; /* Reduced width */
+            margin: 0 auto;
+        }
+
+        .contact-form h3 {
+            color: #2d7d34;
+            font-size: 1.2rem; /* Smaller font size */
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* Reduced gap */
+        }
+
+        .form-row input {
+            width: 48%; /* Ensure input fields are of equal width */
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 8px; /* Reduced padding */
+            margin: 8px 0; /* Reduced margin */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9rem; /* Smaller font size */
+        }
+
+        .contact-form textarea {
+            width: 100%;
+            height: 120px; /* Reduced height */
+            resize: none;
+        }
+
+        .contact-form button {
+            background-color: #2d7d34;
+            color: white;
+            padding: 12px 25px; /* Reduced padding */
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 15px auto 0;
+        }
+
+        .contact-form button:hover {
+            background-color: #218c2f; /* Darker green */
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .info-box {
+            flex: 1 1 250px;
+            max-width: 250px; /* Reduced max width */
+            margin: 10px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #f4f4f4;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .info-box:hover {
+            background-color: #e6ffe6;
+            transform: translateY(-5px);
+        }
+
+        .info-box h3 {
+            font-size: 1.1rem; /* Slightly smaller font size */
+            color: #2d7d34;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .info-box .icon {
+            font-size: 1.8rem; /* Slightly smaller icon */
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .go-back-btn {
+            background-color: #2d7d34;
+            color: white;
+            padding: 12px 25px; /* Reduced padding */
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin-top: 40px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .go-back-btn:hover {
+            background-color: #218c2f;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+    <section class="contact-us">
+        <div class="contact-header">
+            <h1>Contact Us - Krushiseva</h1>
+            <p>Any questions or remarks? Just write us a message!</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+                <!-- Name and Phone/Email Row -->
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="text" name="contact" placeholder="Your Email or Phone Number" required>
+                </div>
+                
+                <!-- Message Textarea -->
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                
+                <!-- Submit Button -->
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Contact Information Boxes -->
+        <div class="contact-info">
+            <div class="info-box" onclick="showMessage('Krushiseva is here to help farmers succeed!')">
+                <span class="icon">🌱</span>
+                <h3>Krushiseva</h3>
+                <p>Farmer Guidance<br>Crop Consultancy</p>
+            </div>
+            <div class="info-box" onclick="showMessage('Call us on +91 98765 43210 for assistance!')">
+                <span class="icon">📞</span>
+                <h3>Helpline</h3>
+                <p>+91 98765 43210<br>+91 12345 67890 <br>Krushiseva123@gmail.com</p>
+            </div>
+            <div class="info-box" onclick="showMessage('Visit our office in Bengaluru, Karnataka!')">
+                <span class="icon">📍</span>
+                <h3>Office Location</h3>
+                <p>Krushiseva HQ<br>Bengaluru, Karnataka, India</p>
+            </div>
+        </div>
+
+        <!-- Go Back Button -->
+        <button class="go-back-btn" onclick="window.location.href='index.html';">Go Back to Home</button>
+    </section>
+
+    <script>
+        // JavaScript Function to Show Alert
+        function showMessage(message) {
+            alert(message);
+        }
+    </script>
+      <script>
+        // Initialize Google Translate
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+      
+        // Load translate script
+        (function() {
+          var gtScript = document.createElement('script');
+          gtScript.type = 'text/javascript';
+          gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+          document.head.appendChild(gtScript);
+        })();
+      
+        // Persist translation across pages
+        const currentLang = sessionStorage.getItem("selectedLang");
+      
+        if (currentLang) {
+          document.cookie = `googtrans=/en/${currentLang};path=/;`;
+        }
+      
+        // Detect and save language selection (once user changes it)
+        const observer = new MutationObserver(() => {
+          const frame = document.querySelector("iframe.goog-te-banner-frame");
+          if (frame) {
+            const lang = document.cookie.match(/\/en\/(\w+)/);
+            if (lang && lang[1]) {
+              sessionStorage.setItem("selectedLang", lang[1]);
+            }
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      </script>
+</body>
+</html>

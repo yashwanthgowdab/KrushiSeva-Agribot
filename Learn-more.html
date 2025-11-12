@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More About Krushiseva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-image: url('learn-more background.png'); /* Replace with your background image URL */
+      background-size: cover;
+      background-position: center;
+    }
+
+    header {
+      background-color: rgba(55, 155, 64, 0.9); /* Darker green */
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    .back-home {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      padding: 10px 15px;
+      background-color: #28a745;
+      border-radius: 5px;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 10px;
+      flex-grow: 1;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .intro h2 {
+      color: #28a745;
+      font-size: 45px;
+    }
+
+    .intro p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+    }
+
+    .feature-box {
+      background-color: white;
+      border: 2px solid #28a745;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      max-width: 400px;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-box h3 {
+      margin-top: 0;
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .feature-box p {
+      margin: 15px 0 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: black;
+    }
+
+    .feature-box .logo {
+      width: 30px;
+      height: auto;
+    }
+
+    .feature-box .left-logo {
+      order: -1;
+      margin-right: 10px;
+    }
+
+    .feature-box .right-logo {
+      margin-left: 10px;
+    }
+
+    /* Style for inline SVG logos */
+    .logo {
+      width: auto;
+      height: 1000%;
+    }
+
+    /* Header logo positioning */
+    .header-logo-left, .header-logo-right {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 100%; /* Adjust to fit within header height */
+    }
+
+    .header-logo-left {
+      left: 0;
+      margin-left: 0px;
+    }
+
+    .header-logo-right {
+      right: 0;
+      margin-right: 0px;
+    }
+  </style>
+</head>
+<body>
+  <div id="google_translate_element"></div>
+
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTov17mBqhnfRVjlVr8TPED5zh5dFdhokELoOaXSZ0fRQV0V_z-nsm55ajed94Nl1GVUXU&usqp=CAU" alt="Left Logo" class="header-logo-left">
+    <h1>Learn More About Krushiseva</h1>
+    <img src="https://i.pinimg.com/736x/4b/ec/31/4bec31ee208e6c7ffd98d00712db72ba.jpg" alt="Right Logo" class="header-logo-right">
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Krushiseva</h2>
+      <p>
+        Krushiseva is a comprehensive platform designed to revolutionize agriculture by equipping farmers with the latest tools and technologies. 
+        We provide accurate, real-time data to help farmers make informed decisions and increase their productivity. With features ranging 
+        from market updates to expert advice, Krushiseva ensures that every farmer has access to the resources they need to succeed.
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feature-box">
+        <h3><svg class="logo left-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg> Market Prices <svg class="logo right-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg></h3>
+        <p>
+          Stay updated with the latest prices of various crops across multiple markets. Access real-time data to make informed selling decisions, 
+          ensuring the best possible returns for your produce. Our platform provides insights into price trends, helping farmers identify 
+          profitable market opportunities. You can also monitor market conditions to avoid price fluctuations and enhance profitability.
+        </p>
+      </div>
+      <div class="feature-box">
+        <h3><svg class="logo left-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg> Climate Updates <svg class="logo right-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg></h3>
+        <p>
+          Receive accurate and region-specific weather forecasts that help you plan farming activities with confidence. Knowing when to sow, 
+          irrigate, or harvest can make all the difference in crop yields. Our platform offers up-to-date climate data, including temperature, 
+          rainfall, and humidity levels, to optimize farming decisions. Climate patterns are tracked to ensure that your crops thrive.
+        </p>
+      </div>
+      <div class="feature-box">
+        <h3><svg class="logo left-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg> Expert Advice <svg class="logo right-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg></h3>
+        <p>
+          Connect with agricultural experts for personalized advice on crop management, pest control, and more. Our platform connects you 
+          with industry specialists who can help you optimize your farming practices and increase productivity. Whether you're new to farming 
+          or a seasoned professional, expert guidance is available at your fingertips.
+        </p>
+      </div>
+      <div class="feature-box">
+        <h3><svg class="logo left-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg> Chatbot Assistance <svg class="logo right-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg></h3>
+        <p>
+          Our AI-powered chatbot is available 24/7 to provide quick solutions to your farming-related questions. From pest management to 
+          crop nutrition, you can get instant advice. The chatbot continually learns and adapts to provide more accurate answers as it interacts 
+          with users. It's a convenient and efficient way to solve common farming problems anytime.
+        </p>
+      </div>
+      <div class="feature-box">
+        <h3><svg class="logo left-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg> Farming News <svg class="logo right-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6V7h12v12z"/></svg></h3>
+        <p>
+          Stay informed about the latest agricultural news, government schemes, and technological innovations that impact the farming industry. 
+          With regular updates, you’ll be aware of the latest policies, crop research, and sustainability practices that can benefit your farm. 
+          From new farming equipment to government subsidies, our news section keeps you in the loop, helping you stay ahead of the curve.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-home">← Back to Home</a>
+  <script>
+    // Initialize Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+  
+    // Load translate script
+    (function() {
+      var gtScript = document.createElement('script');
+      gtScript.type = 'text/javascript';
+      gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.head.appendChild(gtScript);
+    })();
+  
+    // Persist translation across pages
+    const currentLang = sessionStorage.getItem("selectedLang");
+  
+    if (currentLang) {
+      document.cookie = `googtrans=/en/${currentLang};path=/;`;
+    }
+  
+    // Detect and save language selection (once user changes it)
+    const observer = new MutationObserver(() => {
+      const frame = document.querySelector("iframe.goog-te-banner-frame");
+      if (frame) {
+        const lang = document.cookie.match(/\/en\/(\w+)/);
+        if (lang && lang[1]) {
+          sessionStorage.setItem("selectedLang", lang[1]);
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  </script>
+
+</body>
+</html>

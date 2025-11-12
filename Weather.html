@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather Forecast</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    h1 {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      margin: 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .weather-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .current-weather {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .temperature {
+      font-size: 2.5rem;
+      color: #4CAF50;
+    }
+
+    .details {
+      text-align: left;
+    }
+
+    .details span {
+      display: block;
+      margin: 4px 0;
+    }
+
+    .weather-icon {
+      width: 60px;
+      height: 60px;
+    }
+
+    .forecast {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .forecast-day {
+      text-align: center;
+      color: #333;
+      padding: 10px;
+    }
+
+    .forecast-day img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .message-box {
+      margin-top: 20px;
+      padding: 10px;
+      background: #eee;
+      border-radius: 8px;
+    }
+
+    input {
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      margin-left: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div id="google_translate_element"></div>
+
+  <h1>🌦 Weather Forecast</h1>
+
+  <div>
+    <input type="text" id="city-input" placeholder="Enter city name" />
+    <button onclick="fetchWeather()">Search</button>
+  </div>
+
+  <div class="weather-card">
+    <h2 id="location">City Name</h2>
+    <div class="current-weather">
+      <div class="temperature" id="current-temp">--°C</div>
+      <div class="details">
+        <span id="current-condition">--</span>
+        <span id="current-wind">-- km/h</span>
+        <span id="current-humidity">--%</span>
+      </div>
+      <img id="current-icon" class="weather-icon" src="" alt="icon">
+    </div>
+
+    <div class="forecast" id="forecast">
+      <!-- Forecast items will be injected here -->
+    </div>
+
+    <div class="message-box" id="message-box">Enter a city name to see the forecast.</div>
+  </div>
+  <a href="index.html" class="go-back" style="background-color: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go Back</a>
+
+  <script>
+    const API_KEY = "0eadc135ce9419ce8e055cffe4812fd1";
+
+    function fetchWeather() {
+      const city = document.getElementById("city-input").value.trim() || "Bengaluru";
+
+      // Clear forecast and show loading
+      document.getElementById("forecast").innerHTML = "";
+      document.getElementById("message-box").textContent = "Fetching weather...";
+
+      // Current weather
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+        .then(res => {
+          if (!res.ok) throw new Error("City not found");
+          return res.json();
+        })
+        .then(data => {
+          document.getElementById("location").textContent = data.name;
+          document.getElementById("current-temp").textContent = `${data.main.temp}°C`;
+          document.getElementById("current-condition").textContent = data.weather[0].description;
+          document.getElementById("current-wind").textContent = `Wind: ${data.wind.speed} km/h`;
+          document.getElementById("current-humidity").textContent = `Humidity: ${data.main.humidity}%`;
+          document.getElementById("current-icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+          const temp = data.main.temp;
+          const message =
+            temp > 30 ? "It's hot today, stay hydrated!" :
+            temp < 20 ? "Cool day, grab a jacket!" :
+            "Weather is mild today.";
+          document.getElementById("message-box").textContent = message;
+        })
+        .catch(err => {
+          document.getElementById("message-box").textContent = err.message;
+        });
+
+      // Forecast
+      fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`)
+        .then(res => {
+          if (!res.ok) throw new Error("Forecast not available");
+          return res.json();
+        })
+        .then(data => {
+          const forecastContainer = document.getElementById("forecast");
+          forecastContainer.innerHTML = "";
+
+          const forecastDays = {};
+          data.list.forEach(entry => {
+            const date = new Date(entry.dt_txt);
+            const day = date.toLocaleDateString(undefined, { weekday: 'short' });
+            const hour = date.getHours();
+            if (!forecastDays[day] && hour === 12) {
+              forecastDays[day] = entry;
+            }
+          });
+
+          let count = 0;
+          for (let day in forecastDays) {
+            if (count++ === 4) break;
+            const entry = forecastDays[day];
+            forecastContainer.innerHTML += `
+              <div class="forecast-day">
+                <div>${day}</div>
+                <img src="https://openweathermap.org/img/wn/${entry.weather[0].icon}@2x.png" alt="icon" />
+                <span>${entry.main.temp}°C</span>
+              </div>
+            `;
+          }
+
+          if (count === 0) {
+            forecastContainer.innerHTML = "<p>No forecast available.</p>";
+          }
+        })
+        .catch(err => {
+          document.getElementById("forecast").innerHTML = `<p>${err.message}</p>`;
+        });
+    }
+
+    // Load default
+    window.onload = fetchWeather;
+  </script>
+   <script>
+    // Initialize Google Translate
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+  
+    // Load translate script
+    (function() {
+      var gtScript = document.createElement('script');
+      gtScript.type = 'text/javascript';
+      gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      document.head.appendChild(gtScript);
+    })();
+  
+    // Persist translation across pages
+    const currentLang = sessionStorage.getItem("selectedLang");
+  
+    if (currentLang) {
+      document.cookie = `googtrans=/en/${currentLang};path=/;`;
+    }
+  
+    // Detect and save language selection (once user changes it)
+    const observer = new MutationObserver(() => {
+      const frame = document.querySelector("iframe.goog-te-banner-frame");
+      if (frame) {
+        const lang = document.cookie.match(/\/en\/(\w+)/);
+        if (lang && lang[1]) {
+          sessionStorage.setItem("selectedLang", lang[1]);
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  </script>
+
+
+</body>
+</html>

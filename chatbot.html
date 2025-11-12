@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Assistant Chat</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #f9f9f9;
+    }
+
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .chat-header {
+      background: #28a745;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .chat-header a {
+      position: absolute;
+      left: 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      max-width: 70%;
+      line-height: 1.5;
+    }
+
+    .bot-message {
+      background: #f1f1f1;
+      align-self: flex-start;
+      color: #333;
+    }
+
+    .user-message {
+      background: #28a745;
+      align-self: flex-end;
+      color: white;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 15px;
+      background: #f9f9f9;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input textarea {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      resize: none;
+      outline: none;
+    }
+
+    .chat-input button {
+      background: none;
+      border: none;
+      margin-left: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .chat-input button svg {
+      width: 28px;
+      height: 28px;
+      fill: #28a745;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin: 10px 0;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .scrollable-container {
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      border:1px solid #ccc;
+    }
+
+    .search-bar {
+      margin: 10px 0;
+      padding: 5px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="google_translate_element"></div>
+  <div class="chat-container">
+    <div class="chat-header">
+      <a href="index.html">Back</a> 
+      KrishiSeva Bot
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="message bot-message">Welcome to KrishiSeva! Type "Hi" to explore more.</div>
+    </div>
+    <div class="chat-input">
+      <textarea id="user-input" placeholder="Type your message here..." rows="1"></textarea>
+      <button id="send-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById("chat-messages");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    const items = {
+      vegetables: [
+        { name: "Tomato", price: 30 },
+        { name: "Potato", price: 20 },
+        { name: "Onion", price: 25 },
+        { name: "Carrot", price: 40 },
+        { name: "Cabbage", price: 15 },
+        { name: "Spinach", price: 10 },
+        { name: "Peas", price: 35 },
+        { name: "Cauliflower", price: 30 },
+        { name: "Brinjal", price: 20 },
+        { name: "Pumpkin", price: 12 },
+        { name: "Chili", price: 50 },
+        { name: "Cucumber", price: 18 },
+        { name: "Bottle Gourd", price: 25 },
+        { name: "Radish", price: 15 },
+        { name: "Bitter Gourd", price: 35 },
+        { name: "Zucchini", price: 40 },
+        { name: "Mushroom", price: 50 },
+        { name: "Sweet Potato", price: 45 },
+        { name: "Corn", price: 25 },
+        { name: "Green Beans", price: 40 }
+      ],
+      fruits: [
+        { name: "Apple", price: 100 },
+        { name: "Banana", price: 25 },
+        { name: "Orange", price: 60 },
+        { name: "Grapes", price: 150 },
+        { name: "Pineapple", price: 80 },
+        { name: "Mango", price: 120 },
+        { name: "Papaya", price: 40 },
+        { name: "Guava", price: 40 },
+        { name: "Watermelon", price: 30 },
+        { name: "Strawberry", price: 200 },
+        { name: "Lychee", price: 150 },
+        { name: "Pomegranate", price: 80 },
+        { name: "Blueberry", price: 250 },
+        { name: "Plum", price: 100 },
+        { name: "Peach", price: 150 },
+        { name: "Pear", price: 120 }
+      ],
+      spices: [
+        { name: "Turmeric", price: 300 },
+        { name: "Cumin", price: 250 },
+        { name: "Coriander", price: 200 },
+        { name: "Ginger", price: 100 },
+        { name: "Cardamom", price: 500 },
+        { name: "Clove", price: 800 },
+        { name: "Chili Powder", price: 100 },
+        { name: "Mustard", price: 150 },
+        { name: "Black Pepper", price: 350 },
+        { name: "Cinnamon", price: 400 }
+      ]
+    };
+
+    function addMessage(sender, text, isHTML = false) {
+      const messageDiv = document.createElement("div");
+      messageDiv.classList.add("message", sender === "user" ? "user-message" : "bot-message");
+      if (isHTML) {
+        messageDiv.innerHTML = text;
+      } else {
+        messageDiv.textContent = text;
+      }
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+    }
+
+    function showMainOptions() {
+      const optionsHTML = `
+        <button onclick="selectOption('marketPrices')">Market Prices</button>
+        <button onclick="selectOption('weather')">Weather</button>
+        <button onclick="selectOption('govtSchemes')">Govt Schemes</button>
+        <button onclick="selectOption('news')">News</button>
+      `;
+      addMessage("bot", `Choose an option:<br>${optionsHTML}`, true);
+    }
+
+    function selectOption(option) {
+      switch (option) {
+        case "marketPrices":
+          showMarketPriceOptions();
+          break;
+        case "weather":
+          addMessage("bot", `To know about Weather: <a href="Weather.html" target="_blank">Click here</a>`, true);
+          break;
+        case "govtSchemes":
+          addMessage("bot", `To Explore government schemes: <a href="Govr-scheme.html" target="_blank">Click here</a>`, true);
+          break;
+        case "news":
+          addMessage("bot", `To know the latest Agri news: <a href="News.html" target="_blank">Click here</a>`, true);
+          break;
+        case "contact":
+          addMessage("bot", `For Any Queriees Contact: <a href="contact.html" target="_blank">Click here</a>`, true);
+          break;
+        default:
+          addMessage("bot", "Invalid option.");
+      }
+    }
+
+    function showMarketPriceOptions() {
+      const subOptionsHTML = `
+        <button onclick="showItems('vegetables')">Vegetables</button>
+        <button onclick="showItems('fruits')">Fruits</button>
+        <button onclick="showItems('spices')">Spices</button>
+      `;
+      addMessage("bot", `Select a category:<br>${subOptionsHTML}`, true);
+    }
+
+    function showItems(category) {
+      const categoryItems = items[category] || [];
+      const searchHTML = `<input type="text" class="search-bar" id="search-bar" placeholder="Search items...">`;
+
+      let itemsHTML = categoryItems
+        .map(item => {
+          return `<button onclick="showPrice('${item.name}', ${item.price})">${item.name}</button>`;
+        })
+        .join("<br>");
+
+      addMessage("bot", `<div class="scrollable-container">${searchHTML}<br>Available ${category}:<br>${itemsHTML}</div>`, true);
+
+      document.getElementById("search-bar").addEventListener("input", function () {
+        const searchQuery = this.value.toLowerCase();
+        const filteredItems = categoryItems.filter(item => item.name.toLowerCase().includes(searchQuery));
+        itemsHTML = filteredItems
+          .map(item => {
+            return `<button onclick="showPrice('${item.name}', ${item.price})">${item.name}</button>`;
+          })
+          .join("<br>");
+        document.querySelector(".scrollable-container").innerHTML = searchHTML + `<br>Available ${category}:<br>${itemsHTML}`;
+      });
+    }
+
+    function showPrice(itemName, price) {
+      addMessage("bot", `${itemName} in your region market is ₹${price} per kg and ₹${price * 1000} per ton.`);
+    }
+
+    function showGovtSchemes() {
+      const schemesHTML = `
+        <a href="https://www.example.com/scheme1" target="_blank">Scheme 1</a><br>
+        <a href="https://www.example.com/scheme2" target="_blank">Scheme 2</a><br>
+        <a href="https://www.example.com/scheme3" target="_blank">Scheme 3</a><br>
+      `;
+      addMessage("bot", `Check out these government schemes:<br>${schemesHTML}`, true);
+    }
+
+    function showNews() {
+      const newsHTML = `
+        <a href="https://www.example.com/news1" target="_blank">News 1</a><br>
+        <a href="https://www.example.com/news2" target="_blank">News 2</a><br>
+        <a href="https://www.example.com/news3" target="_blank">News 3</a><br>
+      `;
+      addMessage("bot", `Here are some latest news articles:<br>${newsHTML}`, true);
+    }
+
+    sendBtn.addEventListener("click", function() {
+      const userMessage = userInput.value.trim();
+      if (userMessage) {
+        addMessage("user", userMessage);
+        userInput.value = "";
+        processMessage(userMessage);
+      }
+    });
+
+    userInput.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendBtn.click();
+      }
+    });
+
+    function processMessage(message) {
+      const lowerMessage = message.toLowerCase();
+
+      if (lowerMessage === "hi" || lowerMessage === "hello") {
+        addMessage("bot", "Once again Welcome back !😊  Please Select the option below to Explore Krushiseva.");
+        showMainOptions();
+      } else if (lowerMessage.includes("price")) {
+        showMarketPriceOptions();
+      } else {
+        addMessage("bot", "Sorry, I didn't understand. Please choose an option.");
+        showMainOptions();
+      }
+    }
+    </script>
+    <script>
+  // Initialize Google Translate
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+  }
+
+  // Load translate script
+  (function() {
+    var gtScript = document.createElement('script');
+    gtScript.type = 'text/javascript';
+    gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.head.appendChild(gtScript);
+  })();
+
+  // Persist translation across pages
+  const currentLang = sessionStorage.getItem("selectedLang");
+
+  if (currentLang) {
+    document.cookie = `googtrans=/en/${currentLang};path=/`;
+  }
+
+  // Detect and save language selection (once user changes it)
+  const observer = new MutationObserver(() => {
+    const frame = document.querySelector("iframe.goog-te-banner-frame");
+    if (frame) {
+      const lang = document.cookie.match(/\/en\/(\w+)/);
+      if (lang && lang[1]) {
+        sessionStorage.setItem("selectedLang", lang[1]);
+      }
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+</script>
+
+</body>
+</html>
+

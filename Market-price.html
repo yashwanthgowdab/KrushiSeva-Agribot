@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Insights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #28a745;
+            color: white;
+            width: 100%;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centers the content horizontally */
+            position: fixed;
+            top: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+        .header-logo {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: white; /* Placeholder background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #28a745;
+            margin-right: 10px; /* Space between logo and title */
+        }
+        .header-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        .market-container {
+            width: 400px;
+            max-height: 400px; /* Limit the height of the container */
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 100px; /* Adjusted for header height */
+            margin-bottom: 20px;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        .market-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .market-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .market-item:last-child {
+            border-bottom: none;
+        }
+        .crop-name {
+            font-weight: bold;
+            color: #555;
+        }
+        .crop-price {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        .price-change {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        .price-change.up {
+            color: #28a745;
+        }
+        .price-change.down {
+            color: #dc3545;
+        }
+        .arrow {
+            margin-right: 5px;
+        }
+        .go-back {
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .go-back:hover {
+            background-color: #218838;
+        }
+        .know-more {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        .know-more:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+    <div class="header">
+        <div class="header-content">
+            <div class="header-logo">L</div> <!-- Placeholder logo -->
+            <div class="header-title">Market Insights</div>
+        </div>
+    </div>
+    <div class="market-container">
+        <div class="market-title">Market Prices</div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Wheat</div>
+                <div class="crop-price">Current Price: $320/ton</div>
+            </div>
+            <div class="price-change up">
+                <span class="arrow">⬆</span> +2.5%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Corn</div>
+                <div class="crop-price">Current Price: $180/ton</div>
+            </div>
+            <div class="price-change down">
+                <span class="arrow">⬇</span> -1.2%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Soybeans</div>
+                <div class="crop-price">Current Price: $420/ton</div>
+            </div>
+            <div class="price-change up">
+                <span class="arrow">⬆</span> +3.8%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Rice</div>
+                <div class="crop-price">Current Price: $250/ton</div>
+            </div>
+            <div class="price-change up">
+                <span class="arrow">⬆</span> +1.5%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Barley</div>
+                <div class="crop-price">Current Price: $150/ton</div>
+            </div>
+            <div class="price-change up">
+                <span class="arrow">⬆</span> +0.8%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Sugarcane</div>
+                <div class="crop-price">Current Price: $200/ton</div>
+            </div>
+            <div class="price-change down">
+                <span class="arrow">⬇</span> -0.5%
+            </div>
+        </div>
+        <!-- New Vegetables and Fruits -->
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Tomatoes</div>
+                <div class="crop-price">Current Price: $180/ton</div>
+            </div>
+            <div class="price-change up">
+                <span class="arrow">⬆</span> +5.2%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Potatoes</div>
+                <div class="crop-price">Current Price: $150/ton</div>
+            </div>
+            <div class="price-change down">
+                <span class="arrow">⬇</span> -2.1%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Carrots</div>
+                <div class="crop-price">Current Price: $220/ton</div>
+            </div>
+            <div class="price-change up">
+                <span class="arrow">⬆</span> +1.7%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Bananas</div>
+                <div class="crop-price">Current Price: $300/ton</div>
+            </div>
+            <div class="price-change up">
+                <span class="arrow">⬆</span> +3.0%
+            </div>
+        </div>
+        <div class="market-item">
+            <div>
+                <div class="crop-name">Apples</div>
+                <div class="crop-price">Current Price: $350/ton</div>
+            </div>
+            <div class="price-change down">
+                <span class="arrow">⬇</span> -1.4%
+            </div>
+        </div>
+    </div>
+    <a href="https://agmarknet.gov.in/" class="know-more" target="_blank">Know More Prices</a>
+    <a href="index.html" class="go-back">Go Back</a>
+    <script>
+        // Initialize Google Translate
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+      
+        // Load translate script
+        (function() {
+          var gtScript = document.createElement('script');
+          gtScript.type = 'text/javascript';
+          gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+          document.head.appendChild(gtScript);
+        })();
+      
+        // Persist translation across pages
+        const currentLang = sessionStorage.getItem("selectedLang");
+      
+        if (currentLang) {
+          document.cookie = `googtrans=/en/${currentLang};path=/;`;
+        }
+      
+        // Detect and save language selection (once user changes it)
+        const observer = new MutationObserver(() => {
+          const frame = document.querySelector("iframe.goog-te-banner-frame");
+          if (frame) {
+            const lang = document.cookie.match(/\/en\/(\w+)/);
+            if (lang && lang[1]) {
+              sessionStorage.setItem("selectedLang", lang[1]);
+            }
+          }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+      </script>
+</body>
+</html>
