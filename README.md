@@ -25,7 +25,7 @@ Krushiseva is a web-based platform designed to empower farmers with timely agric
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/SuryaCodeCraft/Krushiseva.git
+ git clone https://yashwanthgowdab.github.io/KrushiSeva-Agribot/
    ```  
 
 2. Navigate to the project directory:  
